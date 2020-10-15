@@ -48,7 +48,9 @@ enum class EAsyncLoadingScreenLayout : uint8
 	 * Similar to Sidebar layout but Dual Sidebar layout has two vertical borders on both left and right of the screen.
 	 * The Dual Sidebar layout is suitable for storytelling, long paragraphs due to the height of the tip widget.
 	 */
-	 ALSL_DualSidebar UMETA(DisplayName = "Dual Sidebar")
+	 ALSL_DualSidebar UMETA(DisplayName = "Dual Sidebar"),
+
+	 ALSL_Menu UMETA(DisplayName = "Menu")
 };
 
 /** Loading Icon Type*/

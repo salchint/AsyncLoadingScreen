@@ -10,6 +10,7 @@
 #include "MoviePlayer.h"
 #include "LoadingScreenSettings.h"
 #include "SCenterLayout.h"
+#include "SMenuLayout.h"
 #include "SClassicLayout.h"
 #include "SLetterboxLayout.h"
 #include "SSidebarLayout.h"
@@ -119,6 +120,9 @@ void FAsyncLoadingScreenModule::SetupLoadingScreen(const FALoadingScreenSettings
 		case EAsyncLoadingScreenLayout::ALSL_DualSidebar:
 			LoadingScreen.WidgetLoadingScreen = SNew(SDualSidebarLayout, LoadingScreenSettings, Settings->DualSidebar);
 			break;
+		case EAsyncLoadingScreenLayout::ALSL_Menu:
+			LoadingScreen.WidgetLoadingScreen = SNew(SMenuLayout, LoadingScreenSettings, Settings->Center);
+			break;
 		}
 		
 	}
@@ -143,5 +147,5 @@ void FAsyncLoadingScreenModule::ShuffleMovies(TArray<FString>& MoviesList)
 }
 
 #undef LOCTEXT_NAMESPACE
-	
+
 IMPLEMENT_MODULE(FAsyncLoadingScreenModule, AsyncLoadingScreen)
