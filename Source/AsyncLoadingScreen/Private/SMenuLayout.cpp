@@ -14,6 +14,19 @@
 #include "SVerticalMenuWidget.h"
 #include "SBackgroundWidget.h"
 #include "STipWidget.h"
+#include "IWidgetFactory.h"
+
+IWidgetFactory* AbstractWidgetFactory::TheFactory = nullptr;
+
+void AbstractWidgetFactory::RegisterFactory(IWidgetFactory* obj)
+{
+	TheFactory = obj;
+}
+
+IWidgetFactory* AbstractWidgetFactory::GetFactory()
+{
+	return TheFactory;
+}
 
 void SMenuLayout::Construct(const FArguments& InArgs, const FALoadingScreenSettings& Settings, const FCenterLayoutSettings& LayoutSettings)
 {
@@ -27,15 +40,26 @@ void SMenuLayout::Construct(const FArguments& InArgs, const FALoadingScreenSetti
 		];
 
 	// Placeholder for loading widget
+	//TSharedRef<SWidget> LoadingWidget = SNullWidget::NullWidget;
+	//if (Settings.LoadingWidget.LoadingWidgetType == ELoadingWidgetType::LWT_Horizontal)
+	//{
+		////LoadingWidget = SNew(SVerticalMenuWidget, Settings.LoadingWidget);
+		//LoadingWidget = SNew(SVerticalMenuWidget, Settings);
+	//}
+	//else
+	//{
+		//LoadingWidget = SNew(SVerticalMenuWidget, Settings);
+	//}
+
+	auto factory = AbstractWidgetFactory::GetFactory();
 	TSharedRef<SWidget> LoadingWidget = SNullWidget::NullWidget;
-	if (Settings.LoadingWidget.LoadingWidgetType == ELoadingWidgetType::LWT_Horizontal)
+	if (factory)
 	{
-		//LoadingWidget = SNew(SVerticalMenuWidget, Settings.LoadingWidget);
-		LoadingWidget = SNew(SVerticalMenuWidget, Settings);
+		LoadingWidget = factory->BuildMenu(Settings);
 	}
 	else
 	{
-		LoadingWidget = SNew(SVerticalMenuWidget, Settings);
+		UE_LOG(LogClass, Log, TEXT("MenuLayout: Failed to get WidgetFactory"));
 	}
 
 	// Add loading widget at center
