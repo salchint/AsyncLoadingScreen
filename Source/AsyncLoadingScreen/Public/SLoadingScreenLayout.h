@@ -13,7 +13,7 @@
 /**
  * Loading screen base theme
  */
-class SLoadingScreenLayout : public SCompoundWidget
+class ASYNCLOADINGSCREEN_API SLoadingScreenLayout : public SCompoundWidget
 {
 public:	
 	static float PointSizeToSlateUnits(float PointSize);

@@ -17,7 +17,7 @@ struct FLoadingWidgetSettings;
 /**
  * Loading Widget base class
  */
-class SLoadingWidget : public SCompoundWidget
+class ASYNCLOADINGSCREEN_API SLoadingWidget : public SCompoundWidget
 {
 public:
 	/** Active timer event for animating the image sequence */

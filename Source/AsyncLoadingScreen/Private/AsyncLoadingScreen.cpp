@@ -10,13 +10,13 @@
 #include "MoviePlayer.h"
 #include "LoadingScreenSettings.h"
 #include "SCenterLayout.h"
-#include "SMenuLayout.h"
 #include "SClassicLayout.h"
 #include "SLetterboxLayout.h"
 #include "SSidebarLayout.h"
 #include "SDualSidebarLayout.h"
 #include "Framework/Application/SlateApplication.h"
 #include "AsyncLoadingScreenLibrary.h"
+#include "IWidgetFactory.h"
 
 #define LOCTEXT_NAMESPACE "FAsyncLoadingScreenModule"
 
@@ -121,7 +121,7 @@ void FAsyncLoadingScreenModule::SetupLoadingScreen(const FALoadingScreenSettings
 			LoadingScreen.WidgetLoadingScreen = SNew(SDualSidebarLayout, LoadingScreenSettings, Settings->DualSidebar);
 			break;
 		case EAsyncLoadingScreenLayout::ALSL_Menu:
-			LoadingScreen.WidgetLoadingScreen = SNew(SMenuLayout, LoadingScreenSettings, Settings->Center);
+			LoadingScreen.WidgetLoadingScreen = AbstractWidgetFactory::GetFactory()->BuildMenuLayout(LoadingScreenSettings, *Settings);
 			break;
 		}
 		

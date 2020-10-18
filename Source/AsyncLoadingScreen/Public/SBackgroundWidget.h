@@ -16,7 +16,7 @@ class FDeferredCleanupSlateBrush;
 /**
  * Background widget
  */
-class SBackgroundWidget : public SCompoundWidget
+class ASYNCLOADINGSCREEN_API SBackgroundWidget : public SCompoundWidget
 {
 public:
 	SLATE_BEGIN_ARGS(SBackgroundWidget) {}

@@ -15,7 +15,7 @@ struct FTipSettings;
 /**
  * Tip widget
  */
-class STipWidget : public SCompoundWidget
+class ASYNCLOADINGSCREEN_API STipWidget : public SCompoundWidget
 {
 public:
 	SLATE_BEGIN_ARGS(STipWidget) {}

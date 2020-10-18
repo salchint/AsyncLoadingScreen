@@ -30,6 +30,8 @@ ULoadingScreenSettings::ULoadingScreenSettings(const FObjectInitializer& Initial
 	}
 }
 
+FMenuLayoutSettings::FMenuLayoutSettings() : FCenterLayoutSettings() {}
+
 #undef LOCTEXT_NAMESPACE
 
 

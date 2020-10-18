@@ -289,6 +289,9 @@ struct ASYNCLOADINGSCREEN_API FLoadingWidgetSettings
 	/** Empty space between the loading text and the loading icon */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Loading Widget Setting")
 	float Space = 1.0f;
+
+	/** The index of the menu item that has focus */
+	int FocusMenuItem = 0;
 };
 
 
@@ -468,6 +471,12 @@ struct FCenterLayoutSettings
 	FSlateBrush BorderBackground;
 };
 
+/** Menu layout settings */
+struct FMenuLayoutSettings : public FCenterLayoutSettings
+{
+	FMenuLayoutSettings();
+};
+
 /** Letterbox Layout settings*/
 USTRUCT(BlueprintType)
 struct FLetterboxLayoutSettings
@@ -612,7 +621,7 @@ class ASYNCLOADINGSCREEN_API ULoadingScreenSettings : public UDeveloperSettings
 public:
 
 	ULoadingScreenSettings(const FObjectInitializer& Initializer);
-	
+
 	/**
 	 * The startup loading screen when you first open the game. Setup any studio logo movies here.
 	 */
@@ -624,7 +633,7 @@ public:
 	 */
 	UPROPERTY(Config, EditAnywhere, Category = "General")
 	FALoadingScreenSettings DefaultLoadingScreen;
-	
+
 	/**
 	 * Classic Layout settings.
 	 * The Classic is a simple, generic layout and fits well with many designs.
@@ -632,7 +641,7 @@ public:
 	 */
 	UPROPERTY(Config, EditAnywhere, Category = "Layout")
 	FClassicLayoutSettings Classic;
-	
+
 	/**
 	 * Center Layout settings.
 	 * The loading widget is at the center of the screen, tip widget can be at the bottom or top.
@@ -665,4 +674,9 @@ public:
 	UPROPERTY(Config, EditAnywhere, Category = "Layout")
 	FDualSidebarLayoutSettings DualSidebar;
 
+	/**
+	 * Menu Layout settings.
+	 * The menu widget is derived from the center layout.
+	 */
+	FMenuLayoutSettings Menu;
 };

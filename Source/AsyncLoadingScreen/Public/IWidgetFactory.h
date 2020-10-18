@@ -14,6 +14,7 @@
 class IWidgetFactory
 {
 public:
+	virtual TSharedRef<SWidget> BuildMenuLayout(const FALoadingScreenSettings& LoadingScreenSettings, const ULoadingScreenSettings& Settings) =0;
 	virtual TSharedRef<SWidget> BuildMenu(const FALoadingScreenSettings& Settings) =0;
 };
 
