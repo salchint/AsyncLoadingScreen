@@ -14,6 +14,13 @@
 class IWidgetFactory
 {
 public:
+	virtual ~IWidgetFactory() {}
+	IWidgetFactory() =default;
+	IWidgetFactory(const IWidgetFactory&) =default;
+	IWidgetFactory(IWidgetFactory&&) =default;
+	IWidgetFactory& operator=(const IWidgetFactory&) =default;
+	IWidgetFactory& operator=(IWidgetFactory&&) =default;
+public:
 	virtual TSharedRef<SWidget> BuildMenuLayout(const FALoadingScreenSettings& LoadingScreenSettings, const ULoadingScreenSettings& Settings) =0;
 	virtual TSharedRef<SWidget> BuildMenu(const FALoadingScreenSettings& Settings) =0;
 };
